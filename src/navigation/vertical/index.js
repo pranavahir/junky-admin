@@ -38,6 +38,11 @@ const navigation = () => {
       openInNewTab: true
     },
     {
+      title: 'ApproveProduct',
+      icon: AccountPlusOutline,
+      path: '/pages/approveproducts',
+    },
+    {
       title: 'Error',
       icon: AlertCircleOutline,
       path: '/pages/error',

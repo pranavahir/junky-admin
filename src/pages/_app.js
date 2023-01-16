@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 // ** Loader Import
 import NProgress from 'nprogress'
+import { getCookies } from 'src/API/Cookies';
 
 // ** Emotion Imports
 import { CacheProvider } from '@emotion/react'
@@ -46,10 +47,13 @@ if (themeConfig.routingLoader) {
 // ** Configure JSS & ClassName
 const App = props => {
   const router = useRouter()
-  useEffect(() => {
-    // router.push('/pages/login/')
 
-}, []);
+	useEffect(() =>{
+    if(!getCookies("userid")){
+      router.push('/pages/login/')
+
+    }
+	},[getCookies("userid")])
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
   // Variables

@@ -20,8 +20,9 @@ export async function Login(email,password,){
   const data = {
       email:email,
       password:password,
+      isAdmin:true
   }
-  const sendotp = axios.post('http://localhost:4000/login-superadmin',data)
+  const sendotp = axios.post('http://localhost:4000/server/login',data)
     // using .then, create a new promise which extracts the data
 const dataPromise = sendotp.then((response) => {
   return response

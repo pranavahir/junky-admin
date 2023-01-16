@@ -30,7 +30,7 @@ import Twitter from 'mdi-material-ui/Twitter'
 import Facebook from 'mdi-material-ui/Facebook'
 import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
-
+import { setCookies } from 'src/API/Cookies'
 // ** Configs
 import themeConfig from 'src/configs/themeConfig'
 
@@ -82,6 +82,10 @@ const LoginPage = () => {
   const loginUser = () => {
     Login(email,values.password).then(response => {
       console.log(response.data)
+      if(!response.data.error){
+        setCookies("userid",response.data.data.user._id)
+        router.push('/')
+      }
     })
   }
   console.log(email,values.password,"EMAIL")
@@ -93,7 +97,7 @@ const LoginPage = () => {
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
               {themeConfig.templateName}
             </Typography>
-            <Typography variant='body2'>Welcome To Waste Management Seller Portal!</Typography>
+            <Typography variant='body2'>Welcome To Junky Admin Seller Portal!</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
             <TextField autoFocus fullWidth id='email' label='Email' sx={{ marginBottom: 4 }} onChange={(e) => setEmail(e.target.value)}/>
